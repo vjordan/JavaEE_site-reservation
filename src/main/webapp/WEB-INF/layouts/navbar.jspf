@@ -1,0 +1,74 @@
+<%@page import="imt.mmpj.storage.model.Utilisateur" %>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="home">Association des amateurs de vin</a>
+            <ul class="nav navbar-nav">
+                <li class="${requestScope['javax.servlet.forward.request_uri'] == "/home" ? "active" : ""}">
+                    <a href="home">Accueil</a>
+                </li>
+                <li class="${requestScope['javax.servlet.forward.request_uri'] == "/catalog" ? "active" : ""}">
+                    <a href="catalog">Catalogue</a>
+                </li>
+                <%if (request.getSession().getAttribute("utilisateur") != null) {%>
+                <li class="${requestScope['javax.servlet.forward.request_uri'] == "/catalogAdd" ? "active" : ""}" style="${!utilisateur.admin ? "display:none;" : ""}">
+                    <a href="catalogAdd">Ajouter un produit </a>
+                </li>
+                <li class="${requestScope['javax.servlet.forward.request_uri'] == "/compte" ? "active" : ""}">
+                    <a href="compte">Mon compte</a>
+                </li>
+                <li>
+                    <a href="ordered">Mes commandes</a>
+                </li>
+
+                <%
+                    }
+                %>
+            </ul>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <div class="navbar-form navbar-right">
+                <%
+                    if (request.getSession().getAttribute("utilisateur") == null) {
+                %>
+                <button type="button" class="btn btn-primary" id="btnInscription">
+                    S'inscrire <i class="fa fa-plus"></i>
+                </button>
+                <button type="button" class="btn btn-success" id="btnLogin">
+                    Se connecter <i class="fa fa-sign-in"></i>
+                </button>
+                <%
+                    } else {
+                %>
+                <a href="basket" class="btn btn-warning">
+                    Panier <i class="fa fa-shopping-basket"></i>
+                <span id="basketSize" class="label label-primary"></span>
+                </a>
+                <button type="button" class="btn btn-danger" id="deco">
+                    Déconnexion <i style="margin-left:1px" class="fa fa-sign-out"></i>
+                </button>
+                <%
+                    }
+                %>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+	var size = '<%= request.getSession().getAttribute("taillePanier") %>';
+	var label = $("#basketSize") ;
+	label.text(""+size);
+	
+    $('#deco').on('click', function (event) {
+        document.location.href = 'home?deconnexion=true'
+    });
+</script>

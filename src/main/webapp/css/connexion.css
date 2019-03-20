@@ -1,0 +1,26 @@
+.modal-header, h4, .close {
+      background-color: #5cb85c;
+      color:white !important;
+      text-align: center;
+      font-size: 30px;
+  }
+ 	 
+.modal-footer {
+      background-color: #f9f9f9;
+  }
+  
+#inscriptionModal .modal-dialog {
+	width : 65%;
+	margin-left : 15%
+}
+
+#headerInscription , #headerInscription h4{
+	background-color : #337AB7;
+      color:white !important;
+      text-align: center;
+      font-size: 30px;
+}
+
+#user{
+	color:#338ACC;
+}

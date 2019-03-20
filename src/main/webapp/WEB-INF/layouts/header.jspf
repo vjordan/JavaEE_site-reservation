@@ -1,0 +1,21 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: maximemaheo
+  Date: 25/10/2017
+  Time: 16:03
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Association des amateurs de vin</title>
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
+  	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+
+</head>
+<body style="margin-top: 70px;">
+
+<%@include file="/WEB-INF/layouts/navbar.jspf" %>

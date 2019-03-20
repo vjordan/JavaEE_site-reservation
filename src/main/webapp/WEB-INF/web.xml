@@ -1,0 +1,12 @@
+<web-app>
+    <servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <description>HomeServlet</description>
+        <servlet-class>imt.mmpj.web.HomeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CatalogServlet</servlet-name>
+        <description>CatalogServlet</description>
+        <servlet-class>imt.mmpj.web.CatalogServlet</servlet-class>
+    </servlet>
+</web-app>

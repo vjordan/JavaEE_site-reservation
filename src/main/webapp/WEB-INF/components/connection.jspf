@@ -1,0 +1,98 @@
+<!-- Fichier contenant la boite de connexion sous forme de modal -->
+
+<!-- CSS de la boite de connexion -->  
+<style>
+.modal-header, h4, .close {
+      background-color: #5cb85c;
+      color:white !important;
+      text-align: center;
+      font-size: 30px;
+  }
+ 	 
+.modal-footer {
+      background-color: #f9f9f9;
+  }
+  
+#inscriptionModal .modal-dialog {
+	width : 65%;
+	margin-left : 15%
+}
+
+#headerInscription , #headerInscription h4{
+	background-color : #337AB7;
+      color:white !important;
+      text-align: center;
+      font-size: 30px;
+}
+
+#user{
+	color:#338ACC;
+}
+
+</style>
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="connexionModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content "  style="margin-top:30%" >
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-lock"></span> Connexion</h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form action="login" role="form" method="POST">
+          <%if(request.getAttribute("exception")!=null)
+			{
+          %>
+	          <div class="alert alert-danger">
+	 			 <strong>Erreur :</strong> ${exception}
+			 </div>
+			<%
+			}
+			%>
+            <div class="form-group">
+              <label for="email"><span class="glyphicon glyphicon-user"></span> Adresse mail</label>
+              <input type="text" class="form-control" name="email" id="email" placeholder="Indiquez votre email" required>
+            </div>
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Mot de passe</label>
+              <input type="password" class="form-control" name="mdp" id="mdp" placeholder="Indiquez votre mot de passe" required>
+            </div>
+              <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Connexion</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Annuler</button>
+        </div>
+      </div>
+      
+    </div>
+  </div> 
+  
+  <!-- Script qui permet d'activer la modal -->
+  <script>
+  	//Permet de gerer le comportement lors du clicque sur le bouton de connexion
+	$(document).ready(function(){
+	    $("#btnLogin").click(function(){
+	        $("#connexionModal").modal('show');
+	    });
+	});
+  	
+	var exception = '<%= (String) request.getAttribute("exception") %>';
+	if(exception!="null")
+  	{
+    $(window).on('load',function(){
+        $('#connexionModal').modal('show');
+    });
+  	}
+  	
+  	
+  	//Clear le formulaire si la modal est caché ou annuler
+	$('#connexionModal').on('hidden.bs.modal', function () {
+	    $(this).find('form').trigger('reset');
+	})
+	
+</script>

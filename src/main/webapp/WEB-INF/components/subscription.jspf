@@ -1,0 +1,109 @@
+<!-- Fichier contenant la boite d'inscription sous forme de modal -->
+
+<!-- CSS de la boite de connexion -->  
+
+  
+  
+  <!-- Modal -->
+  <div class="modal fade" id="inscriptionModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content "  style="margin-top:5%" >
+        <div  id="headerInscription" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-user"></span> Inscription</h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+        <%if(request.getAttribute("exception2")!=null){ %>
+	        <div class="alert alert-danger">
+	 			<strong>Erreur :</strong> ${exception2}
+			</div>
+		<% } %>
+          <form role="form" method="POST" action="register">
+            <div class="form-group row col-xs-10">
+              <label for="email"><span class="glyphicon glyphicon-user"></span> Adresse mail  </label><span style="color:red;margin-left:5px;" class="glyphicon glyphicon-asterisk"></span>
+              <input type="text" class="form-control" name="email" id="email" placeholder="Indiquez votre email" value="${mail}" required>
+            </div>
+            
+            <div class="form-group row">
+            	<div class="col-xs-5">
+	              <label for="psw"><span class="glyphicon glyphicon-eye-close"></span> Mot de passe (8 caractères minimum)</label><span style="color:red;margin-left:5px;" class="glyphicon glyphicon-asterisk"></span>
+	              <input type="password" class="form-control" name="password" id="password" placeholder="Indiquez votre mot de passe" value="${password}" pattern=".{8,}" required>
+	            </div>
+	            
+	            <div class="col-xs-5">
+	              <label for="pswConfirm"><span class="glyphicon glyphicon-eye-close"></span> Mot de passe (Confirmation)  </label><span style="color:red;margin-left:5px;" class="glyphicon glyphicon-asterisk"></span>
+	              <input type="password" class="form-control" name="password2" id="password2" placeholder="Confirmez votre mot de passe" value="${password2}" required>
+	            </div>
+            </div>
+            
+            <div class="form-group row">
+            	<div class="col-xs-5">   
+	              <label for="nom"><span class="glyphicon glyphicon-info-sign"></span> Nom de famille  </label><span style="color:red;margin-left:5px;" class="glyphicon glyphicon-asterisk"></span>
+	              <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Indiquez votre nom de famille" value="${firstName}" required>
+	            </div>
+	            
+            	<div class="col-xs-5">
+	              <label for="prenom"><span class="glyphicon glyphicon-info-sign"></span> Prénom  </label><span style="color:red;margin-left:5px;" class="glyphicon glyphicon-asterisk"></span>
+	              <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Indiquez votre prénom" value="${lastname}" required>
+	            </div>
+            </div>
+            
+            <div class="form-group row">
+ 	          <div class="col-xs-5">
+	              <label for="adresse"><span class="glyphicon glyphicon-map-marker"></span> Adresse</label><span style="color:red;margin-left:5px;" class="glyphicon glyphicon-asterisk"></span>
+	              <input type="text" class="form-control" name="address" id="address" placeholder="Indiquez votre adresse" value="${address}" required>
+              </div>  
+            
+            	<div class="col-xs-5">
+	              <label for="cp"><span class="glyphicon glyphicon-map-marker"></span> Code postal</label><span style="color:red;margin-left:5px;" class="glyphicon glyphicon-asterisk"></span>
+	              <input type="text" class="form-control" name="postalCode" id="postalCode" placeholder="Indiquez votre code postal" value="${postalCode}" pattern= "[0-9]{5}" required>
+	            </div>
+            </div>
+            
+            <div class="form-group row">
+              <div class="col-xs-5">
+	              <label for="ville"><span class="glyphicon glyphicon-map-marker"></span> Ville</label><span style="color:red;margin-left:5px;" class="glyphicon glyphicon-asterisk"></span>
+	              <input type="text" class="form-control" name="city" id="city" placeholder="Indiquez votre ville" value="${city}" required>
+             </div>
+            
+	            <div class="col-xs-5">
+	              <label for="pays"><span class="glyphicon glyphicon-globe"></span> Pays</label>
+	               <select class="form-control" name="country" id="country">
+	               		<option>France</option>
+	               		<option>Dom-Tom</option>
+	               		<option>Angleterre</option>
+	               	</select>
+	            </div>
+            </div>
+            
+            <div class="col-xs-8" style="margin-left:17%;margin-top:3%">
+              <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-off"></span> Valider l'inscription</button>
+             </div>
+          </form>
+        </div>
+        <div class="modal-footer" style="margin-top:3%">
+          <button type="button" id="register" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Annuler</button>
+        </div>
+      </div>
+      
+    </div>
+  </div> 
+  
+  <!-- Script qui permet d'activer la modal -->
+  <script>
+  	//Permet de gerer le comportement lors du clicque sur le bouton de connexion
+	$(document).ready(function(){
+	    $("#btnInscription").click(function(){
+	        $("#inscriptionModal").modal();
+	    });
+	});
+	
+	var exception = '<%= (String) request.getAttribute("exception2") %>';
+	if(exception!="null"){
+	    $(window).on('load',function(){
+	        $('#inscriptionModal').modal('show');
+	    });
+  	}
+</script>
